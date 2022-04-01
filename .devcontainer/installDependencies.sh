@@ -108,10 +108,18 @@ apt-get update -q && apt-get install -qy cmake
 # pip3 install --upgrade protobuf
 
 echo '####################################################'
-echo '#misc'
+echo '#install django'
 echo '####################################################'
-# apt-get update && apt install
-# TOD Vue, Django
+pip3 install django==4.0
+
+echo '####################################################'
+echo '#install Vue'
+echo '####################################################'
+apt-get update -qq && apt-get install -y -qq \
+    nodejs \
+    npm
+
+npm install @vue/cli
 
 # remove apt lists so that they are not saved in the image layers
 rm -rf /var/lib/apt/lists/*

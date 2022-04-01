@@ -116,8 +116,10 @@ echo '####################################################'
 echo '#install Vue'
 echo '####################################################'
 apt-get update -qq && apt-get install -y -qq \
-    nodejs \
     npm
+
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+apt install nodejs -y
 
 npm install -g @vue/cli
 

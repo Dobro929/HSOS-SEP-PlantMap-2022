@@ -119,7 +119,7 @@ apt-get update -qq && apt-get install -y -qq \
     nodejs \
     npm
 
-npm install vue@next
+npm install -g @vue/cli
 
 # remove apt lists so that they are not saved in the image layers
 rm -rf /var/lib/apt/lists/*

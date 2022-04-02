@@ -1,4 +1,4 @@
-# kick-off-project
+# kickoffproject
 
 ## Project setup
 ```

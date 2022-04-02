@@ -126,7 +126,7 @@ apt install nodejs -y
 
 echo '####################################################'
 echo '#install vue'
-echo '#####################################################'
+echo '####################################################'
 npm install -g @vue/cli
 
 # remove apt lists so that they are not saved in the image layers

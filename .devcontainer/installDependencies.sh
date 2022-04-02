@@ -107,6 +107,8 @@ apt-get update -q && apt-get install -qy cmake
 # echo '#updating python proto stuff'
 # pip3 install --upgrade protobuf
 
+#####*BACKEND*#####
+
 echo '####################################################'
 echo '#install django'
 echo '####################################################'
@@ -122,11 +124,12 @@ echo '#install django-cors-headers'
 echo '####################################################'
 pip3 install django-cors-headers
 
+#####*FRONTEND*#####
+
 echo '####################################################'
 echo '#install npm'
 echo '####################################################'
-apt-get update -qq && apt-get install -y -qq \
-    npm
+apt-get update -q && apt-get install -qy npm
 
 echo '####################################################'
 echo '#install node 14.x'
@@ -138,6 +141,16 @@ echo '####################################################'
 echo '#install vue'
 echo '####################################################'
 npm install -g @vue/cli
+
+echo '####################################################'
+echo '#install axios'
+echo '####################################################'
+npm install --save axios
+
+echo '####################################################'
+echo '#install vue-axios'
+echo '####################################################'
+npm install --save vue-axios
 
 # remove apt lists so that they are not saved in the image layers
 rm -rf /var/lib/apt/lists/*

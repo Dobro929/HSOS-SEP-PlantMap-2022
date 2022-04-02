@@ -35,3 +35,6 @@
 .vscode
 #whitelist the .vscode folder in .devcontainer
 !.devcontainer/.vscode
+
+#pycache
+__pycache__

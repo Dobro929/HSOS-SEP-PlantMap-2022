@@ -113,6 +113,11 @@ echo '####################################################'
 pip3 install django==4.0
 
 echo '####################################################'
+echo '#install djangorestframework'
+echo '####################################################'
+pip3 install djangorestframework
+
+echo '####################################################'
 echo '#install npm'
 echo '####################################################'
 apt-get update -qq && apt-get install -y -qq \

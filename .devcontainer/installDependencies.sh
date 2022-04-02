@@ -113,14 +113,20 @@ echo '####################################################'
 pip3 install django==4.0
 
 echo '####################################################'
-echo '#install Vue'
+echo '#install npm'
 echo '####################################################'
 apt-get update -qq && apt-get install -y -qq \
     npm
 
+echo '####################################################'
+echo '#install node 14.x'
+echo '####################################################'
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 apt install nodejs -y
 
+echo '####################################################'
+echo '#install vue'
+echo '####################################################'
 npm install -g @vue/cli
 
 # remove apt lists so that they are not saved in the image layers

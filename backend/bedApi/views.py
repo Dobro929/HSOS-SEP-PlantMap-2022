@@ -42,4 +42,4 @@ def bed_detail(request, bed_id):
             "latitude":7.99
         }
         ]
-    return JsonResponse(beds[bed_id])
+    return JsonResponse(beds[bed_id-1])

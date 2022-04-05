@@ -108,49 +108,46 @@ apt-get update -q && apt-get install -qy cmake
 # pip3 install --upgrade protobuf
 
 #####*BACKEND*#####
+echo '####################################################'
+echo '#INSTALL BACKEND'
+echo '####################################################'
 
-echo '####################################################'
-echo '#install django'
-echo '####################################################'
+echo '### - django - ###'
 pip3 install django==4.0
 
-echo '####################################################'
-echo '#install djangorestframework'
-echo '####################################################'
+echo '### - djangorestframework - ###'
 pip3 install djangorestframework
 
-echo '####################################################'
-echo '#install django-cors-headers'
-echo '####################################################'
+echo '### - django-cors-headers - ###'
 pip3 install django-cors-headers
 
 #####*FRONTEND*#####
+echo '####################################################'
+echo '#INSTALL FRONTEND'
+echo '####################################################'
 
-echo '####################################################'
-echo '#install npm'
-echo '####################################################'
+echo '### - npm - ###'
 apt-get update -q && apt-get install -qy npm
 
-echo '####################################################'
-echo '#install node 14.x'
-echo '####################################################'
+echo '### - nodejs 14.x - ###'
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 apt install nodejs -y
 
-echo '####################################################'
-echo '#install vue'
-echo '####################################################'
+echo '### - vue - ###'
 npm install -g @vue/cli
 
-echo '####################################################'
-echo '#install axios'
-echo '####################################################'
+echo '### - axios - ###'
 npm install --save axios
-
-echo '####################################################'
-echo '#install vue-axios'
-echo '####################################################'
 npm install --save vue-axios
+
+echo '### - leaflet - ###'
+npm i leaflet
+npm i @types/leaflet
+
+echo '### - fontawesome - ###'
+npm i --save @fortawesome/fontawesome-svg-core
+npm i --save @fortawesome/free-solid-svg-icons
+npm i --save @fortawesome/vue-fontawesome@prerelease
 
 # remove apt lists so that they are not saved in the image layers
 rm -rf /var/lib/apt/lists/*

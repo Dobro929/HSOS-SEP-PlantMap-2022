@@ -77,10 +77,11 @@ jobs:
       - uses: actions/checkout@v2
 
       #build workspace
-      # - name: Build the ros workspace
-      #   run: |
-      #     TODO
-      #   shell: bash
+      - name: Build the ros workspace
+        run: |
+          cd frontend
+          npm install
+        shell: bash
 
       #pre-commit checks
       - name: run pre-commit tests

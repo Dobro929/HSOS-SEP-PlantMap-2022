@@ -114,11 +114,7 @@ echo '####################################################'
 
 echo '### - django - ###'
 pip3 install django==4.0
-
-echo '### - djangorestframework - ###'
 pip3 install djangorestframework
-
-echo '### - django-cors-headers - ###'
 pip3 install django-cors-headers
 
 #####*FRONTEND*#####
@@ -133,8 +129,8 @@ echo '### - nodejs 14.x - ###'
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 apt install nodejs -y
 
-echo '### - vue - ###'
-npm install -g @vue/cli
+echo '### - create-vue - ###'
+npm install -g create-vue
 
 echo '### - axios - ###'
 npm install --save axios

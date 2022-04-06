@@ -61,7 +61,7 @@ export default defineComponent({
   overflow-y: auto;
   width: 100%;
   .table-wrapper {
-    border-radius: 0.25rem;
+    border-radius: 1rem;
     padding: 10px;
     box-shadow: 0 5px 20px #97979721;
     width: fit-content;
@@ -73,6 +73,7 @@ export default defineComponent({
         tr {
           td {
             padding: 0.5rem 1rem;
+            font-weight: 600;
           }
         }
       }
@@ -82,16 +83,17 @@ export default defineComponent({
             padding: 0.5rem 1rem;
           }
           & td:first-child {
-            border-radius: 0.25rem 0 0 0.25rem;
+            border-radius: 1rem 0 0 1rem;
           }
           & td:last-child {
-            border-radius: 0 0.25rem 0.25rem 0;
+            border-radius: 0 1rem 1rem 0;
           }
           &:hover {
             cursor: pointer;
             color: white;
             td {
               background: #79b729;
+              box-shadow: 0 5px 20px #97979721;
             }
           }
         }

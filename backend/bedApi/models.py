@@ -1,5 +1,8 @@
-from django.db import models
 import uuid
+
+from django.db import models
+
+
 # BED
 class Bed(models.Model):
     uuid = models.UUIDField()

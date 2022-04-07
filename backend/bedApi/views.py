@@ -1,20 +1,22 @@
-from django.http import JsonResponse
-from rest_framework.decorators import api_view
-from google.protobuf import empty_pb2
-from google.protobuf.json_format import MessageToDict
-import grpc
-
-from .serializers import BedSerializer
-
 ## ToDo change IMPORT
 import string
 import sys
+
+import grpc
+from django.http import JsonResponse
+from google.protobuf import empty_pb2
+from google.protobuf.json_format import MessageToDict
+from rest_framework.decorators import api_view
+
+from .serializers import BedSerializer
+
 # there is definitly a better way to add an import path
 sys.path.append(r'../backend/bedApi/build/grpc/')
 import meta_operations_service_pb2_grpc as metaOperations
 import project_query_pb2 as projectQuerry
-#from build.grpc import meta_operations_service_pb2_grpc as metaOperations
-#from build.grpc import project_query_pb2 as projectQuerry
+
+# from build.grpc import meta_operations_service_pb2_grpc as metaOperations
+# from build.grpc import project_query_pb2 as projectQuerry
 ## ToDo change IMPORT
 
 SERVER_URL = "seerep.naturerobots.de:5000"
@@ -55,7 +57,7 @@ def beds_grpc(request):
         serializer = BedSerializer(data=bed)
         if serializer.is_valid():
             bed_list.append(bed)
-            
+
     return JsonResponse({"projects": bed_list})"""
 
 

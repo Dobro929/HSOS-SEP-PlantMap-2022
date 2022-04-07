@@ -117,6 +117,10 @@ pip3 install django==4.0
 pip3 install djangorestframework
 pip3 install django-cors-headers
 
+echo '### - gRPC - ###'
+pip3 install grpcio
+pip3 install grpcio-tools
+
 #####*FRONTEND*#####
 echo '####################################################'
 echo '#INSTALL FRONTEND'

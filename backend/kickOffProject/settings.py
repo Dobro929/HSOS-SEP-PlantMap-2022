@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bedApi',
     'rest_framework',
     'corsheaders',
+    'django_grpc_framework',
 ]
 
 MIDDLEWARE = [

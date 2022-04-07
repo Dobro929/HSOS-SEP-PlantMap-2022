@@ -116,6 +116,7 @@ echo '### - django - ###'
 pip3 install django==4.0
 pip3 install djangorestframework
 pip3 install django-cors-headers
+pip3 install djangogrpcframework
 
 echo '### - gRPC - ###'
 pip3 install grpcio

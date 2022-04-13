@@ -5,7 +5,6 @@ import type { Bed } from "@/types/bed";
 export const BedStore = defineStore({
   id: "beds",
   state: () => ({
-    bedIds: [] as string[],
     beds: [] as Bed[],
   }),
   getters: {
@@ -15,15 +14,14 @@ export const BedStore = defineStore({
   },
   actions: {
     async setStoreDataFromApi() {
-      this.bedIds = (await getBeds()).beds;
-      const bedArray: Bed[] = [];
-      for (const bedID in this.bedIds) {
-        const bed = await getBedDetail(bedID);
-        if (bed) {
-          bedArray.push(bed);
+      this.beds = (await getBeds()).beds;
+
+      for (const bedID in this.beds) {
+        const bed_detail: Bed = (await getBedDetail(this.beds[bedID].uuid)).bed;        
+        if (bed_detail) {
+          this.beds[bedID] = bed_detail;
         }
-      }
-      this.beds = bedArray;
+      }      
     },
     /*async getBedIds() {
       this.bedIds = (await getBeds()).beds;

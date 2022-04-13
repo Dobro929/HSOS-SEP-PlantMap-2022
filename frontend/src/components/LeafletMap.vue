@@ -39,7 +39,7 @@ export default defineComponent({
       {
         attribution:
           'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
+        maxZoom: 20,
         id: "sadsadas/cl1jkmk1a002v15mx9pc8koka",
         tileSize: 512,
         zoomOffset: -1,
@@ -50,14 +50,14 @@ export default defineComponent({
   },
   methods: {
     createMarker(bed: Bed): void {
-      let marker: L.Marker = L.marker([bed.latitude, bed.longitude], {
+      let marker: L.Marker = L.marker([bed.geolocation.latitude, bed.geolocation.longitude], {
         icon: greenIcon,
       }).addTo(this.leafletMap);
-      this.markers.set(bed.id, marker);
+      this.markers.set(bed.uuid, marker);
       this.addBedPopupToMarker(marker, bed);
     },
     flyToAndOpenPopup(id: number, latitude: number, longitude: number): void {
-      this.leafletMap.flyTo(new L.LatLng(latitude, longitude), 18, {
+      this.leafletMap.flyTo(new L.LatLng(latitude, longitude), 20, {
         animate: true,
         duration: 2.0,
       });
@@ -68,22 +68,15 @@ export default defineComponent({
     },
     addBedPopupToMarker(marker: L.Marker, bed: Bed): void {
       let popup: L.Popup = L.popup({ className: "bed-popup" }).setContent(
-        "<h1>Bed " +
-          bed.id +
+        "<h1>" +
+          bed.name +
           "</h1>" +
           "<table>" +
           "<tr>" +
-          "<th>Name:</th>" +
-          "<td>" +
-          bed.name +
-          "</td>" +
+          "<th>Info:</th>" +
+          "<td>Hier steht ein Info</td>" +
           "</tr>" +
           "<tr>" +
-          "<th>Kultur:</th>" +
-          "<td>" +
-          bed.culture +
-          "</td>" +
-          "</tr>" +
           "</table>"
       );
       marker.bindPopup(popup);

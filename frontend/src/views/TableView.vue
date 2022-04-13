@@ -3,25 +3,33 @@
     <div class="table-wrapper">
       <table class="table table-borderless">
         <thead>
-          <tr>
-            <td>Id</td>
+          <tr v-if="beds">
             <td>Name</td>
-            <td>Culture</td>
             <td>Latitude</td>
-            <td>Longitude</td>
+            <td>Longitude</td>          
+            <td>Kultur</td>
+            <td>Status</td>
           </tr>
         </thead>
         <tbody>
           <tr
             v-bind:key="bed"
             v-for="bed in beds"
-            v-on:click="goToMap(bed.id, bed.latitude, bed.longitude)"
+            v-on:click="goToMap(bed.uuid, bed.geolocation.latitude, bed.geolocation.longitude)"
           >
-            <td>{{ bed.id }}</td>
             <td>{{ bed.name }}</td>
-            <td>{{ bed.culture }}</td>
-            <td>{{ bed.latitude }}</td>
-            <td>{{ bed.longitude }}</td>
+            <template v-if="bed.geolocation">
+              <td>{{ bed.geolocation.latitude }}</td>
+              <td>{{ bed.geolocation.longitude }}</td>
+            </template>
+            <template v-else>
+            <td>-</td>
+            <td>-</td>
+            </template>
+            <td>Tomaten</td>
+            <td>
+            <span class="badge bg-good">Sehr gut</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -41,6 +49,7 @@ export default defineComponent({
   setup() {
     const main = BedStore();
     const beds: Ref<Bed[]> = storeToRefs(main).beds;
+    
     return {
       beds,
     };
@@ -81,6 +90,10 @@ export default defineComponent({
         tr {
           td {
             padding: 0.5rem 1rem;
+
+            .bg-good {
+              background-color: #79b729;
+            }
           }
           & td:first-child {
             border-radius: 1rem 0 0 1rem;

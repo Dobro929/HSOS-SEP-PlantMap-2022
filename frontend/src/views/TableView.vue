@@ -6,7 +6,7 @@
           <tr v-if="beds">
             <td>Name</td>
             <td>Latitude</td>
-            <td>Longitude</td>          
+            <td>Longitude</td>
             <td>Kultur</td>
             <td>Status</td>
           </tr>
@@ -15,7 +15,13 @@
           <tr
             v-bind:key="bed"
             v-for="bed in beds"
-            v-on:click="goToMap(bed.uuid, bed.geolocation.latitude, bed.geolocation.longitude)"
+            v-on:click="
+              goToMap(
+                bed.uuid,
+                bed.geolocation.latitude,
+                bed.geolocation.longitude
+              )
+            "
           >
             <td>{{ bed.name }}</td>
             <template v-if="bed.geolocation">
@@ -23,12 +29,12 @@
               <td>{{ bed.geolocation.longitude }}</td>
             </template>
             <template v-else>
-            <td>-</td>
-            <td>-</td>
+              <td>-</td>
+              <td>-</td>
             </template>
             <td>Tomaten</td>
             <td>
-            <span class="badge bg-good">Sehr gut</span>
+              <span class="badge bg-good">Sehr gut</span>
             </td>
           </tr>
         </tbody>
@@ -49,7 +55,7 @@ export default defineComponent({
   setup() {
     const main = BedStore();
     const beds: Ref<Bed[]> = storeToRefs(main).beds;
-    
+
     return {
       beds,
     };

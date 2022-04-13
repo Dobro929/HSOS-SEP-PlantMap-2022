@@ -2,7 +2,8 @@ from bedApi.models import Bed, Geolocation
 from django_grpc_framework import proto_serializers
 from rest_framework import serializers
 
-#https://stackoverflow.com/questions/53319787/how-can-i-select-specific-fields-in-django-rest-framework
+
+# https://stackoverflow.com/questions/53319787/how-can-i-select-specific-fields-in-django-rest-framework
 class DynamicFieldsModelSerializer(serializers.ModelSerializer):
     """
     A ModelSerializer that takes an additional `fields` argument that
@@ -23,6 +24,7 @@ class DynamicFieldsModelSerializer(serializers.ModelSerializer):
             for field_name in existing - allowed:
                 self.fields.pop(field_name)
 
+
 class GeolocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Geolocation
@@ -35,4 +37,3 @@ class BedSerializer(DynamicFieldsModelSerializer):
     class Meta:
         model = Bed
         fields = '__all__'
-        

@@ -3,12 +3,12 @@ import string
 import sys
 
 import grpc
+from bedApi.models import Bed, Geolocation, Geometrie
+from django.core import serializers
 from django.http import JsonResponse
 from google.protobuf import empty_pb2
 from google.protobuf.json_format import MessageToDict
 from rest_framework.decorators import api_view
-from django.core import serializers
-from bedApi.models import Bed, Geolocation, Geometrie
 
 from .serializers import BedSerializer
 
@@ -65,22 +65,21 @@ def beds_grpc(request):
 # Get grpc beds
 @api_view(['GET'])
 def beds_grpc(request):
-    response = stub.GetProjects(empty_pb2.Empty())    
-    
-    #save
+    response = stub.GetProjects(empty_pb2.Empty())
+
+    # save
     """projects = MessageToDict(response)['projects']
     for bed_info in projects:
         bed_info_obj = BedInfo(**bed_info)
         if(bed_info_obj):
             print("save:", bed_info_obj)"""
 
-
-    #get from db
+    # get from db
     data = []
     fields = ('uuid', 'name')
     beds = Bed.objects.all()
     if beds:
-        serializer = BedSerializer(beds, many=True, fields= fields)
+        serializer = BedSerializer(beds, many=True, fields=fields)
         if serializer.data:
             data = serializer.data
     return JsonResponse({"beds": data})
@@ -92,12 +91,12 @@ def bed_detail_grpc(request, bed_id):
     querry = projectQuerry.ProjectQuery()
     querry.projectuuid = bed_id
     response = stub.GetProjectDetails(querry)
-    
-    #save
+
+    # save
     bed_detail = MessageToDict(response)
     saveBeds(bed_detail)
 
-    #get from db
+    # get from db
     data = {}
     bed = Bed.objects.get(uuid=bed_id)
     if bed:
@@ -115,16 +114,16 @@ def saveBeds(bed_detail):
             bed_geolocation = Geolocation(**bed_detail['geolocation'])
             if bed_geolocation:
                 bed_geolocation.save()
-                bed = Bed(uuid=bed_info['uuid'],name=bed_info['name'],geolocation=bed_geolocation)
+                bed = Bed(uuid=bed_info['uuid'], name=bed_info['name'], geolocation=bed_geolocation)
                 if bed:
                     bed.save()
                     if "geometries" in bed_detail:
                         bed_geometries = bed_detail['geometries']
                         for bed_geometrie in bed_geometries:
-                            bed_geometrie = Geometrie(bed=bed,**bed_geometrie)
+                            bed_geometrie = Geometrie(bed=bed, **bed_geometrie)
                             if bed_geometrie:
                                 bed_geometrie.save()
         else:
-            bed = Bed(uuid=bed_info['uuid'],name=bed_info['name'])
+            bed = Bed(uuid=bed_info['uuid'], name=bed_info['name'])
             if bed:
                 bed.save()

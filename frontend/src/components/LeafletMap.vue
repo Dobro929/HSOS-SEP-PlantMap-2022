@@ -50,9 +50,12 @@ export default defineComponent({
   },
   methods: {
     createMarker(bed: Bed): void {
-      let marker: L.Marker = L.marker([bed.geolocation.latitude, bed.geolocation.longitude], {
-        icon: greenIcon,
-      }).addTo(this.leafletMap);
+      let marker: L.Marker = L.marker(
+        [bed.geolocation.latitude, bed.geolocation.longitude],
+        {
+          icon: greenIcon,
+        }
+      ).addTo(this.leafletMap);
       this.markers.set(bed.uuid, marker);
       this.addBedPopupToMarker(marker, bed);
     },

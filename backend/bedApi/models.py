@@ -2,11 +2,12 @@ import uuid
 
 from django.db import models
 
+
 # GEOLOCATION
 class Geolocation(models.Model):
     coordinateSystem = models.CharField(max_length=100)
     ellipsoid = models.CharField(max_length=100)
-    latitude =  models.FloatField()
+    latitude = models.FloatField()
     longitude = models.FloatField()
 
     # ToString
@@ -21,7 +22,7 @@ class Bed(models.Model):
     geolocation = models.OneToOneField(
         Geolocation,
         on_delete=models.CASCADE,
-        #primary_key=True,
+        # primary_key=True,
     )
 
     # ToString
@@ -32,8 +33,8 @@ class Bed(models.Model):
 # GEOMETRIE
 class Geometrie(models.Model):
     name = models.CharField(max_length=100)
-    uuid = models.CharField(primary_key= True, max_length=100)
-    type =  models.CharField(max_length=100)
+    uuid = models.CharField(primary_key=True, max_length=100)
+    type = models.CharField(max_length=100)
     frameId = models.CharField(max_length=100)
     stamp = models.CharField(max_length=100)
     bed = models.ForeignKey(Bed, on_delete=models.CASCADE)

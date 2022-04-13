@@ -17,11 +17,11 @@ export const BedStore = defineStore({
       this.beds = (await getBeds()).beds;
 
       for (const bedID in this.beds) {
-        const bed_detail: Bed = (await getBedDetail(this.beds[bedID].uuid)).bed;        
+        const bed_detail: Bed = (await getBedDetail(this.beds[bedID].uuid)).bed;
         if (bed_detail) {
           this.beds[bedID] = bed_detail;
         }
-      }      
+      }
     },
     /*async getBedIds() {
       this.bedIds = (await getBeds()).beds;

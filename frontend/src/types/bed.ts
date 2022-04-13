@@ -25,5 +25,5 @@ export interface Bed {
   uuid: string;
   name: string;
   geolocation: Geolocation;
-  geometries: Geometrie[]
+  geometries: Geometrie[];
 }
